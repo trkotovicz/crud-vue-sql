@@ -1,23 +1,20 @@
-{
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+require('dotenv').config();
+
+const options = {
+  host: process.env.MYSQL_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.MYSQL_DATABASE,
+  username: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  dialect: 'mysql',
+  dialectOptions: {
+    timezone: 'Z',
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
-}
+  logging: false,
+};
+
+module.exports = {
+  development: options,
+  test: options,
+  production: options,
+};

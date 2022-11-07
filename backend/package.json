@@ -10,7 +10,7 @@
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
   "keywords": [],
-  "author": "Thais Kotovicz <thais_kotovicz@gmail.com>",
+  "author": "Thais Kotovicz <thais_kotovicz@hotmail.com>",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
