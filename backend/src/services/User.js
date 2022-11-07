@@ -20,4 +20,15 @@ const login = async ({ email, password }) => {
   };
 };
 
-module.exports = { login };
+const getById = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    const error = new Error('User not found');
+    error.name = 'NotFoundError';
+    error.status = StatusCodes.NOT_FOUND;
+    throw error;
+  }
+  return user;
+};
+
+module.exports = { login, getById };
