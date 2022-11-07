@@ -8,6 +8,6 @@
     "compose:down": "docker-compose down --remove-orphans"
   },
   "keywords": [],
-  "author": "Thais Kotovicz <thais_kotovicz@gmail.com>",
+  "author": "Thais Kotovicz <thais_kotovicz@hotmail.com>",
   "license": "ISC"
 }
