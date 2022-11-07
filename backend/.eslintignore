@@ -1,3 +1,4 @@
 models
 seeders
 migrations
+/src/utils/validations.js
