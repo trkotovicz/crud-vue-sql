@@ -21,15 +21,18 @@ services:
     ports:
       - 3001:3001
     platform: linux/x86_64
+    working_dir: /app-backend
     depends_on:
       db:
         condition: service_healthy
     environment:
+      - APP_PORT=3001
       - JWT_SECRET=senha*super*secreta
       - MYSQL_PASSWORD=123456
       - MYSQL_DATABASE=users-db
       - MYSQL_HOST=db
       - MYSQL_USER=root
+      - MYSQL_PORT=3306
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"]
       timeout: 10s
