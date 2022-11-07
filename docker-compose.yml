@@ -27,7 +27,7 @@ services:
     environment:
       - JWT_SECRET=senha*super*secreta
       - MYSQL_PASSWORD=123456
-      - MYSQL_DATABASE=allugator-db
+      - MYSQL_DATABASE=users-db
       - MYSQL_HOST=db
       - MYSQL_USER=root
     healthcheck:
