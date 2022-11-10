@@ -17,6 +17,22 @@ module.exports = {
     return value;
   },
 
+  validateRegister: (data) => {
+    const schema = joi.object({
+      name: joi.string().min(6).required(),
+      email: joi.string().email().required(),
+      password: joi.string().min(8).required(),
+    }).required().label('loginRegister');
+
+    const { error, value } = schema.validate(data);
+    if (error) {
+      error.name = 'ValidationError';
+      error.status = 400;
+      throw error;
+    }
+    return value;
+  },
+
   validateCpf: (data) => {
     const isValid = cpf.isValid(data);
     if (!isValid) {
