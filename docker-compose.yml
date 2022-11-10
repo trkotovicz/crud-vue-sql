@@ -29,7 +29,7 @@ services:
       - APP_PORT=3001
       - JWT_SECRET=senha*super*secreta
       - MYSQL_PASSWORD=123456
-      - MYSQL_DATABASE=users-db
+      - MYSQL_DATABASE=registers-db
       - MYSQL_HOST=db
       - MYSQL_USER=root
       - MYSQL_PORT=3306
