@@ -31,4 +31,15 @@ const getById = async (id) => {
   return user;
 };
 
-module.exports = { login, getById };
+const getAll = async () => {
+  const users = await User.findAll();
+  if (!users) {
+    const error = new Error('No user found');
+    error.name = 'NotFoundError';
+    error.status = StatusCodes.NOT_FOUND;
+    throw error;
+  }
+  return users;
+};
+
+module.exports = { login, getById, getAll };
