@@ -21,8 +21,7 @@ const login = async ({ email, password }) => {
   };
 };
 
-const register = async (data) => {
-  const { name, email, password } = data
+const register = async ({ name, email, password }) => {
   validateRegister({ name, email, password });
   const [user, created] = await User.findOrCreate({
     where: { [Op.or]: { email, name } },
@@ -43,26 +42,4 @@ const register = async (data) => {
   };
 };
 
-const getById = async (id) => {
-  const user = await User.findByPk(id);
-  if (!user) {
-    const error = new Error('User not found');
-    error.name = 'NotFoundError';
-    error.status = StatusCodes.NOT_FOUND;
-    throw error;
-  }
-  return user;
-};
-
-const getAll = async () => {
-  const users = await User.findAll();
-  if (!users) {
-    const error = new Error('No user found');
-    error.name = 'NotFoundError';
-    error.status = StatusCodes.NOT_FOUND;
-    throw error;
-  }
-  return users;
-};
-
-module.exports = { login, getById, getAll, register };
+module.exports = { login, register };

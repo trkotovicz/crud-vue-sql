@@ -15,15 +15,4 @@ module.exports = {
     const token = jwtService.createToken(user);
     res.status(StatusCodes.CREATED).json({ token, user });
   },
-
-  getById: async (req, res) => {
-    const { id } = req.params;
-    const user = await userService.getById(id);
-    res.status(StatusCodes.OK).json(user);
-  },
-
-  getAll: async (_req, res) => {
-    const users = await userService.getAll();
-    res.status(StatusCodes.OK).json(users);
-  },
 };
