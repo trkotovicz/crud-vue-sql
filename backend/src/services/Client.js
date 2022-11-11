@@ -2,12 +2,12 @@
 const { StatusCodes } = require('http-status-codes');
 const { Op } = require('sequelize');
 const { Client } = require('../db/models');
-const { validateUser, validateCpf } = require('../utils/validations');
+const { validateClient, validateCpf, validateClientUpdate } = require('../utils/validations');
 
 const create = async (data) => {
   const { name, email, cpf, address, addressNumber, 
     addressComplement, district, zip, city, state, kinship } = data;
-  validateUser(data);
+  validateClient(data);
   validateCpf(cpf);
 
   const [user, created] = await Client.findOrCreate({
@@ -55,8 +55,9 @@ const remove = async (id) => {
 const update = async (data, id) => {
   const { address, addressNumber, addressComplement,
     district, zip, city, state } = data;
+    validateClientUpdate(data);
 
-  const client = await Client.update(
+  const [client] = await Client.update(
     { address, addressNumber, addressComplement, district, zip, city, state },
     { where: { id } },
   );
@@ -67,7 +68,17 @@ const update = async (data, id) => {
     error.status = StatusCodes.NOT_FOUND;
     throw error;
   }
-  return client;
+
+  return {
+    id,
+    address: data.address,
+    addressNumber: data.addressNumber,
+    addressComplement: data.addressComplement,
+    district: data.district,
+    zip: data.zip,
+    city: data.city,
+    state: data.state
+  };
 };
 
 module.exports = { create, getById, getAll, remove, update };

@@ -43,7 +43,7 @@ module.exports = {
     }
   },
   
-  validateUser: (data) => {
+  validateClient: (data) => {
     const schema = joi.object({
       name: joi.string().required(),
       cpf: joi.string().length(11).required(),
@@ -56,6 +56,26 @@ module.exports = {
       state: joi.string().required(),
       email: joi.string().email().required(),
       kinship: joi.string(),
+    });
+
+    const { error, value } = schema.validate(data);
+    if (error) {
+      error.name = 'ValidationError';
+      error.status = 400;
+      throw error;
+    }
+    return value;
+  },
+
+  validateClientUpdate: (data) => {
+    const schema = joi.object({
+      address: joi.string().required(),
+      addressNumber: joi.number().integer().positive().required(),
+      addressComplement: joi.string(),
+      district: joi.string().required(),
+      zip: joi.string().length(8).required(),
+      city: joi.string().required(),
+      state: joi.string().required(),
     });
 
     const { error, value } = schema.validate(data);
