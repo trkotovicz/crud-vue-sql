@@ -46,10 +46,9 @@ module.exports = {
   validateUser: (data) => {
     const schema = joi.object({
       name: joi.string().required(),
-      birthDate: joi.date().required(),
       cpf: joi.string().length(11).required(),
       address: joi.string().required(),
-      addressNumber: joi.number().integer().positive().required(),
+      addressNumber: joi.number().integer().positive(),
       addressComplement: joi.string(),
       district: joi.string().required(),
       zip: joi.string().length(8).required(),

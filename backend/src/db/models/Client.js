@@ -10,10 +10,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    birthDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
     cpf: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -24,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     addressNumber: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     addressComplement: {
       type: DataTypes.STRING,

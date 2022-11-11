@@ -5,7 +5,6 @@ module.exports = {
     [
       {
         name: 'Homer Jay Simpson',
-        birthDate: '1956-05-12',
         cpf: '79645300600',
         address: 'Evergreen Terrace',
         addressNumber: 632,
@@ -18,7 +17,6 @@ module.exports = {
       },
       {
         name: 'Lisa Marie Simpson',
-        birthDate: '1982-05-09',
         cpf: '38202483824',
         address: 'Evergreen Terrace',
         addressNumber: 632,
@@ -31,7 +29,6 @@ module.exports = {
       },
       {
         name: 'Marjorie Jacqueline Bouvier Simpson',
-        birthDate: '1956-10-23',
         cpf: '6600035469',
         address: 'Evergreen Terrace',
         addressNumber: 632,
@@ -44,7 +41,6 @@ module.exports = {
       },
       {
         name: 'Bartholomew J. Bouvier Simpson',
-        birthDate: '1980-04-01',
         cpf: '42838420283',
         address: 'Evergreen Terrace',
         addressNumber: 632,

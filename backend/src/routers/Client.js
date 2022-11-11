@@ -8,5 +8,6 @@ clientRouter.use(authUser);
 
 clientRouter.get('/clients', clientController.getAll);
 clientRouter.get('/clients/:id', clientController.getById);
+clientRouter.post('/clients', clientController.create);
 
 module.exports = clientRouter;
