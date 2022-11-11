@@ -55,6 +55,7 @@ module.exports = {
       city: joi.string().required(),
       state: joi.string().required(),
       email: joi.string().email().required(),
+      kinship: joi.string(),
     });
 
     const { error, value } = schema.validate(data);

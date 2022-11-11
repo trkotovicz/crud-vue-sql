@@ -6,14 +6,14 @@ const { validateUser, validateCpf } = require('../utils/validations');
 
 const create = async (data) => {
   const { name, email, cpf, address, addressNumber, 
-    addressComplement, district, zip, city, state } = data;
+    addressComplement, district, zip, city, state, kinship } = data;
   validateUser(data);
   validateCpf(cpf);
 
   const [user, created] = await Client.findOrCreate({
     where: { [Op.or]: { name, email, cpf } },
     defaults: { name, email, cpf, address, addressNumber,
-      addressComplement, district, zip, city, state },
+      addressComplement, district, zip, city, state, kinship },
   });
 
   if (!created) {
@@ -38,13 +38,36 @@ const getById = async (id) => {
 
 const getAll = async () => {
   const clients = await Client.findAll();
-  if (!clients) {
+  return clients;
+};
+
+const remove = async (id) => {
+  const client = await Client.destroy({ where: { id } });
+  if (!client) {
     const error = new Error('No client found');
     error.name = 'NotFoundError';
     error.status = StatusCodes.NOT_FOUND;
     throw error;
   }
-  return clients;
+  return client;
 };
 
-module.exports = { create, getById, getAll };
+const update = async (data, id) => {
+  const { address, addressNumber, addressComplement,
+    district, zip, city, state } = data;
+
+  const client = await Client.update(
+    { address, addressNumber, addressComplement, district, zip, city, state },
+    { where: { id } },
+  );
+
+  if (!client) {
+    const error = new Error('Client not found');
+    error.name = 'NotFoundError';
+    error.status = StatusCodes.NOT_FOUND;
+    throw error;
+  }
+  return client;
+};
+
+module.exports = { create, getById, getAll, remove, update };
