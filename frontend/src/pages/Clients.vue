@@ -5,19 +5,19 @@
     <form class="form-horizontal">
       <label class="col-sm-2 control-label">
         NOME
-        <input type="text" placeholder="NOME" class="form-control"/>
+        <input type="text" placeholder="NOME" class="form-control" v-model="name" />
       </label>
       <label class="col-sm-2 control-label">
         CPF
-        <input type="number" placeholder="CPF" class="form-control"/>
+        <input type="number" placeholder="CPF" class="form-control" v-model="cpf" />
       </label>
       <label class="col-sm-2 control-label">
         EMAIL
-        <input type="text" placeholder="EMAIL" class="form-control"/>
+        <input type="text" placeholder="EMAIL" class="form-control" v-model="email"/>
       </label>
       <label class="col-sm-2 control-label">
         FILIAÇÃO
-        <input type="text" placeholder="FILIAÇÃO" class="form-control"/>
+        <input type="text" placeholder="FILIAÇÃO" class="form-control" v-model="kinship"/>
       </label>
 
       <label class="col-sm-2 control-label">
@@ -36,11 +36,11 @@
       </label>
       <label class="col-sm-2 control-label">
         Nº
-        <input type="number" placeholder="Nº" class="form-control"/>
+        <input type="number" placeholder="Nº" class="form-control" v-model="addressNumber"/>
       </label>
       <label class="col-sm-2 control-label">
         COMPLEMENTO
-        <input type="text" placeholder="COMPLEMENTO" class="form-control"/>
+        <input type="text" placeholder="COMPLEMENTO" class="form-control" v-model="addressComplement"/>
       </label>
       <label class="col-sm-2 control-label">
         BAIRRO
@@ -57,7 +57,7 @@
     </span>
     </div>
 
-    <button class="btn btn-success">FINALIZAR</button>
+    <button class="btn btn-success" v-on:click="createNewClient()">FINALIZAR</button>
 
   </header>
 
@@ -76,6 +76,7 @@
 import { defineComponent } from 'vue'
 import axios from 'axios'
 import ClientsCard from '../components/ClientsCard.vue'
+import { createClient } from '../services/apiRequests'
 
 export default defineComponent({
   name: 'Clients',
@@ -86,11 +87,20 @@ export default defineComponent({
     return {
       cep : '',
       response : null,
-      messageCep: null
+      name: '',
+      cpf: '',
+      email: '',
+      kinship: '',
+      address: '',
+      addressNumber: '',
+      addressComplement: '',
+      district: '',
+      city: '',
+      state: '',
     }
 	},
 	methods : {
-		getCep() {
+		async getCep() {
       const url = `https://viacep.com.br/ws/${ this.cep }/json/`
       axios.get(url)
         .then( response => {
@@ -103,9 +113,27 @@ export default defineComponent({
         })
         .catch( error => console.log(error) )
 		},
+    async createNewClient() {
+      const data = this.response
+      const client = {
+        name: this.name,
+        cpf: this.cpf,
+        email: this.email,
+        kinship: this.kinship,
+        cep: this.cep,
+        address: data.logradouro,
+        addressNumber: this.addressNumber,
+        addressComplement: this.addressComplement,
+        district: data.bairro,
+        city: data.localidade,
+        state: data.uf
+      }
+      await createClient(client)
+      console.log(client)
+    }
 	},
   watch: {
-    cep: function(newCep, cep) {
+    cep: function(newCep, oldCep) {
       if (newCep.length === 8) this.getCep()
       else this.response = null
     }
