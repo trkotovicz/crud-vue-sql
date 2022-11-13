@@ -1,38 +1,43 @@
 <template>
   <main>
-    <h1>NOVO CADASTRO</h1>
-    <form>
 
-      <label htmlFor="Login" class="">
+    <h2>NOVO CADASTRO</h2>
+
+    <form class="form-horizontal">
+
+      <label for="name" class="col-sm-2 control-label">
         NOME
         <input
-          class=""
+          id="name"
           type="text"
+          class="form-control"
           placeholder="nome completo"
         />
       </label>
 
-      <label htmlFor="Login" class="">
+      <label for="email" class="col-sm-2 control-label">
         EMAIL
         <input
-          class=""
+          id="email"
           type="email"
+          class="form-control"
           placeholder="email"
         />
       </label>
 
-      <label htmlFor="Password" class="">
+      <label for="password" class="col-sm-2 control-label">
         SENHA
         <input
-          class=""
+          id="password"
           minLength="8"
           type="password"
+          class="form-control"
           placeholder="senha"
         />
       </label>
 
       <a href="/">
-        <button class="" type="button">
+        <button class="btn btn-success" type="button">
           CADASTRAR
         </button>
       </a>
@@ -54,5 +59,30 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped>
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+input, button {
+  margin: 10px 0px;
+  text-align: center;
+}
+
+label {
+  padding: 8px;
+}
+
+button {
+  width: 150px;
+}
+
+h2 {
+  padding: 30px;
+}
+
 </style>

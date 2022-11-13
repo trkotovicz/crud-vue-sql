@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h2>CONSULTA DE CLIENTES</h2>
+    <h3>CONSULTA DE CLIENTES</h3>
     <router-view />
   </div>
 </template>
@@ -22,4 +22,9 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+h3 {
+  padding: 30px;
+}
+
 </style>
