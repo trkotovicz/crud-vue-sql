@@ -11,6 +11,7 @@
           type="email"
           class="form-control"
           placeholder="digite seu email"
+          v-model="email"
         />
       </label>
 
@@ -22,11 +23,12 @@
           type="password"
           class="form-control"
           placeholder="digite sua senha"
+          v-model="password"
         />
       </label>
 
       <a href="/clients">
-        <button class="btn btn-success" type="button">
+        <button class="btn btn-success" type="button" v-on:click="requestLogin()">
           LOGIN
         </button>
       </a>
@@ -45,13 +47,27 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { login } from '../services/apiRequests';
 
 export default defineComponent({
   name: 'Login',
   data() {
-    return {}
+    return {
+      email: '',
+      password: '',
+    }
   },
-  methods: {},
+  methods: {
+    async requestLogin() {
+      const data = {
+        email: this.email,
+        password: this.password
+      }
+      
+      await login(data)
+      console.log(data)
+    },
+  },
 })
 </script>
 
@@ -62,10 +78,6 @@ form {
   flex-direction: column;
   align-items: center;
   align-content: center;
-  /* border-radius: 8%;
-  width: 40%;
-  height: 50vh;
-  background-color: rgb(236, 236, 236); */
 }
 
 input, button {

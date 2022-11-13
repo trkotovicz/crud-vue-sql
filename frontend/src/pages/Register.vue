@@ -12,6 +12,7 @@
           type="text"
           class="form-control"
           placeholder="nome completo"
+          v-model="name"
         />
       </label>
 
@@ -22,6 +23,7 @@
           type="email"
           class="form-control"
           placeholder="email"
+          v-model="email"
         />
       </label>
 
@@ -33,11 +35,12 @@
           type="password"
           class="form-control"
           placeholder="senha"
+          v-model="password"
         />
       </label>
 
       <a href="/">
-        <button class="btn btn-success" type="button">
+        <button class="btn btn-success" type="button" v-on:click="createNewUser()">
           CADASTRAR
         </button>
       </a>
@@ -49,13 +52,29 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { userRegister } from '../services/apiRequests';
 
 export default defineComponent({
   name: 'Register',
   data() { 
-    return {}
+    return {
+      name: '',
+      email: '',
+      password: ''
+    }
   },
-  methods: {},
+  methods: {
+    async createNewUser() {
+      const data = {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      }
+
+      await userRegister(data)
+      console.log(data)
+    },
+  },
 })
 </script>
 
