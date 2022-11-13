@@ -62,6 +62,10 @@ form {
   flex-direction: column;
   align-items: center;
   align-content: center;
+  /* border-radius: 8%;
+  width: 40%;
+  height: 50vh;
+  background-color: rgb(236, 236, 236); */
 }
 
 input, button {
