@@ -1,24 +1,15 @@
 <template>
   <div id="app">
-    Qualquer coisa aqui!
-    <Login />
-    <Register />
-    <Clients />
+    <h2>CONSULTA DE CLIENTES</h2>
+    <router-view />
   </div>
 </template>
 
 <script>
-import Login from './components/Login.vue'
-import Register from './components/Register.vue';
-import Clients from './components/Clients.vue';
 
 export default {
   name: 'App',
-  components: {
-    Login,
-    Register,
-    Clients,
-}
+  components: {},
 }
 </script>
 

@@ -1,6 +1,8 @@
 <template>
   <main>
-    <h1>NOVO CADASTRO</h1>
+
+    <h1>LOGIN</h1>
+
     <form>
       <label htmlFor="Login" className="">
         EMAIL
@@ -10,6 +12,7 @@
           placeholder="digite seu email"
         />
       </label>
+
       <label htmlFor="Password" className="">
         SENHA
         <input
@@ -19,22 +22,36 @@
           placeholder="digite sua senha"
         />
       </label>
-      <button className="" type="button">
-        CADASTRAR
-      </button>
+
+      <a href="/clients">
+        <button className="" type="button">
+          LOGIN
+        </button>
+      </a>
+
+      <a href="/register">
+        <button className="" type="button">
+          CADASTRAR
+        </button>
+      </a>
+
     </form>
+
   </main>
+  
 </template>
 
 <script>
-export default {
-  name: 'Register',
-  data() { 
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'Login',
+  data() {
     return {}
   },
   methods: {},
-}
+})
 </script>
 
-<style>
+<style scoped>
 </style>

@@ -15,9 +15,10 @@
 </template>
 
 <script>
-import ClientsCard from './ClientsCard.vue'
+import { defineComponent } from 'vue'
+import ClientsCard from '../components/ClientsCard.vue'
 
-export default {
+export default defineComponent({
   name: 'Clients',
   components: {
     ClientsCard
@@ -26,7 +27,7 @@ export default {
     return {}
   },
   methods: {},
-}
+})
 </script>
 
 <style>
