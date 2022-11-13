@@ -120,7 +120,7 @@ export default defineComponent({
         cpf: this.cpf,
         email: this.email,
         kinship: this.kinship,
-        cep: this.cep,
+        zip: this.cep,
         address: data.logradouro,
         addressNumber: this.addressNumber,
         addressComplement: this.addressComplement,
