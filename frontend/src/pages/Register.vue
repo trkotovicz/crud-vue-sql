@@ -64,14 +64,14 @@ export default defineComponent({
     }
   },
   methods: {
-    async createNewUser() {
+    createNewUser() {
       const data = {
         name: this.name,
         email: this.email,
         password: this.password
       }
 
-      await userRegister(data)
+      userRegister(data)
       console.log(data)
     },
   },

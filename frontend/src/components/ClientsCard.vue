@@ -27,7 +27,7 @@
       
         <tbody>
           <tr v-for="client in clients" :key="client.id">
-            <!-- MAP PARA CADA CLIENTE CADASTRADO NO DB -->
+
             <th>{{client.id}}</th>
             <th>{{client.name}}</th>
             <th>{{client.cpf}}</th>
@@ -40,8 +40,8 @@
             <th>{{client.state}}</th>
             <th>{{client.email}}</th>
             <th>{{client.kinship}}</th>
-            <th><button class="btn btn-warning btn-sm">EDITAR</button></th>
-            <th><button class="btn btn-danger btn-sm">EXCLUIR</button></th>
+            <th><button class="btn btn-warning btn-sm" v-on:click="editClient(client.id, client)">EDITAR</button></th>
+            <th><button class="btn btn-danger btn-sm" v-on:click="excludeClient(client.id)">EXCLUIR</button></th>
           </tr>
         </tbody>
 
@@ -55,7 +55,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-// import { getAllClients, getClientById, updateClient, deleteClient } from '../services/apiRequests';
+import { getAllClients, updateClient, deleteClient } from '../services/apiRequests';
 
 export default defineComponent({
   name: 'ClientsCard',
@@ -118,16 +118,26 @@ export default defineComponent({
     }
   },
   methods: {
-    // async getClients() {
-    //   const data = await getAllClients()
-    //   this.clients = data;
-    // }
+    async getClients() {
+      const data = await getAllClients()
+      this.clients = data;
+    },
+    async excludeClient(id) {
+      await deleteClient(id)
+    },
+    async editClient(id, body) {
+      await updateClient(id, body)
+    }
   },
   watch: {
     // clients: function(newClients, oldClients) {
     //   if (newClients) this.getClients()
+    //   if (oldClients) this.getClients()
     // }
   },
+  // mounted() {
+    // this.getClients()
+  // }
 })
 </script>
 

@@ -27,11 +27,11 @@
         />
       </label>
 
-      <a href="/clients">
+      <!-- <a href="/clients"> -->
         <button class="btn btn-success" type="button" v-on:click="requestLogin()">
           LOGIN
         </button>
-      </a>
+      <!-- </a> -->
 
       <a href="/register">
         <button class="btn btn-primary" type="button">
@@ -64,8 +64,8 @@ export default defineComponent({
         password: this.password
       }
       
-      await login(data)
-      console.log(data)
+      const teste = await login(data)
+      console.log(teste)
     },
   },
 })

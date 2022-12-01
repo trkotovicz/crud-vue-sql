@@ -5,6 +5,11 @@ const api = axios.create({
   timeout: 10000,
 });
 
+// const api = axios.create({
+//   baseURL: `http://localhost:${process.env.APP_PORT || '3001'}`,
+//   timeout: 10000,
+// });
+
 // --------------------------------------------------------------
 // USERS REQUESTS
 
